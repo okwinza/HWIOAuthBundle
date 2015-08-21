@@ -114,7 +114,8 @@ class OAuthUtils
             $redirectUrl = $this->httpUtils->generateUri($request, $this->ownerMap->getResourceOwnerCheckPath($resourceOwner->getName())).'?authenticated=true';
         } else {
             $request->attributes->set('service', $resourceOwner->getName());
-            $redirectUrl = $this->httpUtils->generateUri($request, 'hwi_oauth_connect_service');
+            //dirty patch for my needs
+            $redirectUrl = $this->httpUtils->generateUri($request, $resourceOwner->getName());
         }
 
         return $redirectUrl;
